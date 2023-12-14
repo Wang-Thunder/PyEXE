@@ -12,9 +12,13 @@ Instructions:
 **3)** Run the program/script and follow the on screen prompts:
 
    **Packaging type:** Select either one file (a single executable) or one directory (a folder with dependancies and the executable separate.)
+
    **Script location:** Enter the location of the script you want to package. If the script is in the same directory as PyEXE, you can just hit enter.
+   
    **Output location:** Enter the desired output location for the finished package. If you select none it will be placed in the same directory as PyEXE.
+   
    **Additional Arguments:** Enter any additional Pyinstaller arguments (a list can be found at https://pyinstaller.org/en/stable/usage.html#options). For simple scripts, enter n for no additional arguments.
+   
    **Display command:** After entering your parameters PyEXE will display your complete build command and give you the option to run command now. If you select yes, it will run the displayed command in the current console.
 
 
