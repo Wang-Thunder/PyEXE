@@ -5,7 +5,7 @@ Instructions:
 
 1) Ensure that you have installed Pyinstaller:
 
-```pip install -U pyinstaller```
+   ```pip install -U pyinstaller```
 
 2) Download either the standalone executable (which comes packaged with UPX) or the python script, whichever you prefer. If you use the python script, download UPX (https://github.com/upx/upx) and place it in the same directory as the script.
 
