@@ -3,7 +3,7 @@ A simple program to package Python files as a Windows executable using Pyinstall
 
 Instructions:
 
-**1)** Ensure that you have installed Pyinstaller:
+**1)** Ensure that you have installed Pyinstaller if you are using the Python script:
 
    ```pip install -U pyinstaller```
 
