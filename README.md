@@ -23,3 +23,8 @@ Instructions:
 
 
 This program is ***not*** necessary to use either Pyinstaller or UPX. This is mostly helpful for people that are new to Python or are lazy ;) 
+
+
+
+|^| **If you found this script helpful, please feel free to toss me a buck on Kofi! :)**
+https://ko-fi.com/wangthunder |^|
