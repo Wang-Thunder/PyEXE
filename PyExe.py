@@ -1,3 +1,7 @@
+#PyExe 1.1 - By: Wangthunder
+#CC BY-NC 4.0: Non Commercial Use - With Attribution
+#Updated: 9-28-24
+
 import subprocess
 import os
 
@@ -25,36 +29,46 @@ def save_upx_directory(directory):
         file.write(directory)
 
 
-print("PyExe by: Wangthunder")
 print("Package a Python script as an EXE with UPX compression.")
-print("This package includes UPX 4.2.1 (github.com/upx/upx)")
-print("-----------------")
-print("Follow the prompts to quickly and easily package your ")
+print("---------------------------")
+print("Example with no console, upx compression, one file, and additional icons: pyinstaller --onefile --windowed --upx-dir path_to_upx --add-data \"E_PA.ico; \" --add-data \"trashcan_icon.png;.\" EPA.py")
+print("---------------------------")
+print("Other arguments: --windowed _will not open the python console window when running the exe_, --clean _will clear existing PyExe cache/install files before building_ OTHER: pyinstaller --help will provide a list of commands.")
+print("---------------------------")
 
 # Packaging type
 packaging_type = get_input("Do you want to package as one EXE (f)ile, or one (d)irectory? (f/d): ", ["f", "d"])
 pyinstaller_arg = "--onefile" if packaging_type == "f" else "--onedir"
 
 # UPX directory
-#upx_dir = f"--upx-dir \ "
-upx_exe_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "upx.exe")
-upx_dir = f"--add-data \"{upx_exe_path};.\""
+upx_directory = read_upx_directory()
 
+if upx_directory:
+    upx_change = get_input(f"WT- My Directory is: C:\\Programming\\UPX-EXE-Compressor | Current UPX directory is '{upx_directory}'. Change it? (y/n): ", ["y", "n"])
+    if upx_change == "y":
+        upx_directory = input(f"Please enter new directory for UPX. It will use the default directory located here otherwise[['{upx_directory}']]: ")
+        save_upx_directory(upx_directory)
+else:
+    upx_directory = input("Enter new UPX directory: ")
+    save_upx_directory(upx_directory)
+
+upx_dir = f"--upx-dir \"{upx_directory}\""
 
 # Script location
-script_location = input("Location of Python script. If script is in the same directory as this terminal, just enter the script name: ")
+script_location = input("Location of Python script: ")
+script_path = "\"" + (script_location) + "\""
 
 # Finished EXE location
 get_outputpath = get_input("Enter the output location for the EXE. If no output path is entered, it will use the current path in this terminal: ", blank_allowed=True)
 if get_outputpath:
     outputpath = "--distpath \"" + (get_outputpath) + "\""
 
-# Additional arguments
-arguments = get_input("Enter any additional pyinstaller arguments you may have (such as --paths to add another directory or --add-data (\"""src;dest""\") to include additional files.) If you are unsure or do not require additional arguments, just enter (n): ", blank_allowed=True)
-add_arguments = "" if arguments == "n" else arguments
+# Windowed Argument
+window_arg = get_input("Do you want to use the --window argument? This will hide the console window that normally pops up when you run the exe. (y)es or (n)o: ", ["y", "n"])
+window_pref = "--windowed" if window_arg == "y" else ""
 
 # Construct command
-command = f"pyinstaller {pyinstaller_arg} {upx_dir} {script_location} {outputpath} {add_arguments}"
+command = f"pyinstaller {pyinstaller_arg} {window_pref} {upx_dir} {outputpath} {script_path}"
 print(f"Here is your command: {command}")
 
 # Run command
